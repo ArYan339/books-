@@ -2,13 +2,24 @@
 import React, { useState } from 'react';
 import { Header } from './components/Header';
 import { BookCard } from './components/BookCard';
+import { BookSummaryModal } from './components/BookSummaryModal';
 import { BOOKS } from './constants';
+import type { Book } from './types';
 
 const App: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedBook, setSelectedBook] = useState<Book | null>(null);
 
   const handleSearchChange = (query: string) => {
     setSearchQuery(query);
+  };
+
+  const handleSelectBook = (book: Book) => {
+    setSelectedBook(book);
+  };
+
+  const handleCloseSummary = () => {
+    setSelectedBook(null);
   };
 
   const filteredBooks = BOOKS.filter(
@@ -20,11 +31,11 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-slate-900 text-slate-200 font-sans">
       <Header searchQuery={searchQuery} onSearchChange={handleSearchChange} />
-      <main className="container mx-auto px-4 py-12">
+      <main className="container mx-auto px-4 py-8 sm:py-12">
         {filteredBooks.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-10">
             {filteredBooks.map((book) => (
-              <BookCard key={book.id} book={book} />
+              <BookCard key={book.id} book={book} onSelect={handleSelectBook} />
             ))}
           </div>
         ) : (
@@ -34,6 +45,11 @@ const App: React.FC = () => {
           </div>
         )}
       </main>
+      
+      {selectedBook && (
+        <BookSummaryModal book={selectedBook} onClose={handleCloseSummary} />
+      )}
+
       <footer className="text-center py-6 text-slate-500 text-sm">
         <p>Created for the modern reader.</p>
         <p>&copy; {new Date().getFullYear()} Digital Book Library. All Rights Reserved.</p>

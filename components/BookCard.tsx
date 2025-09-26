@@ -5,14 +5,22 @@ import { DownloadIcon } from './IconComponents';
 
 interface BookCardProps {
   book: Book;
+  onSelect: (book: Book) => void;
 }
 
-export const BookCard: React.FC<BookCardProps> = ({ book }) => {
+export const BookCard: React.FC<BookCardProps> = ({ book, onSelect }) => {
   return (
-    <div className="bg-slate-800 rounded-xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition-all duration-300 ease-in-out group border border-slate-700 hover:border-cyan-500/50 hover:shadow-cyan-500/20">
+    <div
+      className="bg-slate-800 rounded-xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition-all duration-300 ease-in-out group border border-slate-700 hover:border-cyan-500/50 hover:shadow-cyan-500/20 cursor-pointer"
+      onClick={() => onSelect(book)}
+      onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && onSelect(book)}
+      role="button"
+      tabIndex={0}
+      aria-label={`View summary for ${book.title}`}
+    >
       <div className="relative">
         <img
-          className="w-full h-80 object-cover"
+          className="w-full h-64 sm:h-80 object-cover"
           src={book.imageUrl}
           alt={`Book cover for ${book.title}`}
         />
@@ -32,6 +40,7 @@ export const BookCard: React.FC<BookCardProps> = ({ book }) => {
           href={book.downloadUrl}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
           className="mt-6 inline-flex items-center gap-2 bg-cyan-600 hover:bg-cyan-500 text-white font-semibold py-2 px-6 rounded-lg transition-all duration-300 transform group-hover:scale-105 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-opacity-75"
           // Add disabled class if download link is '#'
           {...(book.downloadUrl === '#' ? { 'aria-disabled': true, className: 'mt-6 inline-flex items-center gap-2 bg-slate-600 text-slate-400 font-semibold py-2 px-6 rounded-lg cursor-not-allowed' } : {})}
