@@ -12,7 +12,7 @@ export const BOOKS: Book[] = [
     description: 'An easy & proven way to build good habits & break bad ones. Tiny changes, remarkable results.',
     summary: 'James Clear\'s "Atomic Habits" offers a practical framework for improving every day. The book argues that significant, long-term results come from the compound effect of hundreds of small decisions, or "atomic habits." Clear introduces the Four Laws of Behavior Change—make it obvious, attractive, easy, and satisfying—as a guide to creating good habits and eliminating bad ones. He emphasizes systems over goals, identity-based habits, and the science of how habits are formed. Through a blend of psychology, biology, and neuroscience, the book provides actionable strategies to take control of your daily routines and achieve remarkable outcomes.',
     imageUrl: 'https://m.media-amazon.com/images/I/81wgcld4wxL._AC_UF1000,1000_QL80_.jpg',
-    downloadUrl: 'https://drive.google.com/file/d/1ACZ_IUP4ilC8kVvArHpwiq6DxTlCcand/view',
+    downloadUrl: 'https://drive.google.com/file/d/1aa9MTYSBU3YUKaQnB8kfSbBpP_OI-td7/view?usp=drive_link',
   },
  
   {
