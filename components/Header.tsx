@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { SearchIcon } from './IconComponents';
 
@@ -9,7 +8,7 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ searchQuery, onSearchChange }) => {
   return (
-    <header className="bg-slate-900/50 backdrop-blur-sm py-6 sm:py-8 text-center border-b border-slate-700 shadow-lg shadow-cyan-500/10 sticky top-0 z-50">
+    <header className="bg-slate-900 py-6 sm:py-8 text-center border-b border-slate-700 shadow-lg shadow-cyan-500/10">
       <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-300 tracking-tight">
         The Digital Athenaeum
       </h1>
